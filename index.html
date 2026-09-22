@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Story ❤️</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Georgia,"Times New Roman",serif;background:#fff7fa;color:#3c2430;overflow-x:hidden}
+section{min-height:100vh;padding:70px 22px;display:flex;align-items:center;justify-content:center;position:relative}
+.card{width:min(900px,100%);text-align:center}
+.kicker{font:600 12px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;color:#b85b7c}
+h1{font-size:clamp(42px,10vw,86px);line-height:.98;margin:16px 0}
+h2{font-size:clamp(30px,7vw,54px);margin:12px 0 20px}
+p{font-size:18px;line-height:1.75}
+button{border:0;border-radius:999px;padding:15px 25px;font-size:16px;cursor:pointer;background:#c65379;color:white;box-shadow:0 10px 30px #c6537930}
+button.alt{background:white;color:#a43d62;border:1px solid #e9b8c9}
+.hero{background:radial-gradient(circle at 50% 20%,#ffe2ec,transparent 45%),linear-gradient(135deg,#fff8fb,#fdeef4)}
+.heart{font-size:58px;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.float{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.float span{position:absolute;font-size:22px;opacity:.35;animation:rise 9s linear infinite}
+@keyframes rise{from{transform:translateY(110vh) rotate(0);opacity:0}20%{opacity:.35}to{transform:translateY(-15vh) rotate(360deg);opacity:0}}
+.scroll{margin-top:45px;display:inline-block;color:#9c506d;font:12px Arial;letter-spacing:2px}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0}
+.photos img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:22px;background:#f6dce5}
+@media(max-width:650px){.photos{grid-template-columns:1fr 1fr}.photos img:last-child{grid-column:span 2}}
+.note{background:#fff;border:1px solid #f0ccd8;border-radius:28px;padding:28px;box-shadow:0 15px 45px #8f3d5520;text-align:left}
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.reason{background:#fff;border-radius:22px;padding:22px;border:1px solid #f2d4de}
+@media(max-width:650px){.reasons{grid-template-columns:1fr}}
+.timeline{display:grid;gap:14px;text-align:left;margin-top:30px}
+.memory{background:#fff;padding:20px 22px;border-left:4px solid #cf6a89;border-radius:0 18px 18px 0}
+.voice{background:#fff;padding:25px;border-radius:25px;margin-top:25px}
+audio{width:100%;margin-top:12px}
+.proposal{background:linear-gradient(135deg,#fff0f5,#ffe1eb)}
+.big{font-size:clamp(34px,9vw,72px)}
+#answer{display:none;margin-top:25px;font-size:22px}
+.footer{min-height:auto;padding:30px;font:12px Arial;color:#a06a7e}
+</style>
+</head>
+<body>
+
+<div class="float" aria-hidden="true">
+<span style="left:8%;animation-delay:0s">♡</span><span style="left:25%;animation-delay:2s">♥</span>
+<span style="left:48%;animation-delay:4s">♡</span><span style="left:70%;animation-delay:1s">♥</span>
+<span style="left:88%;animation-delay:6s">♡</span>
+</div>
+
+<section class="hero" id="home">
+<div class="card">
+<div class="heart">♡</div>
+<div class="kicker">A little surprise for you</div>
+<h1>Hey, <span id="gfName">My Love</span>...</h1>
+<p>I made this little corner of the internet just for you.</p>
+<button onclick="document.getElementById('story').scrollIntoView()">Open My Heart</button>
+<div class="scroll">SCROLL DOWN ↓</div>
+</div>
+</section>
+
+<section id="story">
+<div class="card">
+<div class="kicker">Our memories</div>
+<h2>Some moments are worth keeping forever.</h2>
+<p>Replace these pictures and captions with your own memories. ❤️</p>
+<div class="photos">
+<img src="assets/photo1.jpg" alt="Memory 1">
+<img src="assets/photo2.jpg" alt="Memory 2">
+<img src="assets/photo3.jpg" alt="Memory 3">
+<img src="assets/photo4.jpg" alt="Memory 4">
+<img src="assets/photo5.jpg" alt="Memory 5">
+</div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<div class="kicker">A letter for you</div>
+<div class="note">
+<h2>To my favourite person,</h2>
+<p id="letter">Write your own love letter here. Tell her what she means to you, mention a special memory, and say the things you don't always get to say.</p>
+<p style="text-align:right">— Yours ❤️</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<div class="kicker">Why you?</div>
+<h2>Because there are a thousand little reasons.</h2>
+<div class="reasons">
+<div class="reason">🌷<br><br><b>Your smile</b><br><br>Write your own reason here.</div>
+<div class="reason">✨<br><br><b>Your presence</b><br><br>Write your own reason here.</div>
+<div class="reason">🫶<br><br><b>The way you care</b><br><br>Write your own reason here.</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<div class="kicker">My voice, just for you</div>
+<h2>Press play when you're ready. 🎙️</h2>
+<p>Put your recorded voice message in <b>assets/voice.mp3</b>.</p>
+<div class="voice">
+<audio controls preload="metadata">
+<source src="assets/voice.mp3" type="audio/mpeg">
+Your browser does not support audio.
+</audio>
+</div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<div class="kicker">Our little timeline</div>
+<h2>From then to now...</h2>
+<div class="timeline">
+<div class="memory"><b>Our beginning</b><br>Write the date and how you first met.</div>
+<div class="memory"><b>A favourite memory</b><br>Write one moment you'll never forget.</div>
+<div class="memory"><b>Today</b><br>And somehow, I still choose you every day.</div>
+</div>
+</div>
+</section>
+
+<section class="proposal" id="proposal">
+<div class="card">
+<div class="heart">♥</div>
+<div class="kicker">One last thing...</div>
+<h2 class="big">Will you be my forever?</h2>
+<p>Whatever happens, I just wanted you to know how special you are to me.</p>
+<button onclick="sayYes()">YES, ALWAYS ❤️</button>
+<button class="alt" onclick="document.getElementById('answer').style.display='block'">I need a moment 🥹</button>
+<div id="answer">Take all the time you need. My heart is already smiling. ❤️</div>
+</div>
+</section>
+
+<div class="footer">Made with love • Edit everything in index.html and the assets folder.</div>
+
+<script>
+function sayYes(){
+  document.getElementById('answer').style.display='block';
+  document.getElementById('answer').innerHTML='You just made my whole world smile. ❤️✨';
+  for(let i=0;i<18;i++){
+    const s=document.createElement('span'); s.textContent='♥';
+    s.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:85vh;font-size:${16+Math.random()*25}px;color:#c65379;z-index:99;pointer-events:none;transition:all 2s ease-out`;
+    document.body.appendChild(s);
+    setTimeout(()=>{s.style.top='15vh';s.style.transform=`translateX(${(Math.random()-.5)*180}px) rotate(${Math.random()*360}deg)`;s.style.opacity=0},30);
+    setTimeout(()=>s.remove(),2200);
+  }
+}
+</script>
+</body>
+</html>
