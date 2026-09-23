@@ -2,733 +2,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Little Story ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make The Best Gift</title>
+    <style>
+        /* Google Font for cute look */
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
 
-<style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(to bottom, #fbe8ec, #fad4db);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #4a2a2e;
+        }
 
-body{
-  margin:0;
-  font-family:Georgia,"Times New Roman",serif;
-  background:#fff7fa;
-  color:#3c2430;
-  overflow-x:hidden;
-}
+        .app-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 400px;
+            min-height: 90vh;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(200, 150, 160, 0.3);
+            border: 2px dashed #f2dae0;
+            padding: 25px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
 
-section{
-  min-height:100vh;
-  padding:70px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
 
-.card{
-  width:min(900px,100%);
-  text-align:center;
-  position:relative;
-  z-index:2;
-}
+        .dot {
+            width: 25px;
+            height: 4px;
+            background-color: #f0e6e8;
+            border-radius: 2px;
+        }
 
-.kicker{
-  font:600 12px Arial,sans-serif;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:#b85b7c;
-}
+        .dot.active {
+            background-color: #e83e8c;
+        }
 
-h1{
-  font-size:clamp(42px,10vw,86px);
-  line-height:.98;
-  margin:16px 0;
-}
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: #3b2023;
+        }
 
-h2{
-  font-size:clamp(30px,7vw,54px);
-  margin:12px 0 20px;
-}
+        label {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
 
-p{
-  font-size:18px;
-  line-height:1.75;
-}
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dcb5bf;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+        }
 
-button{
-  border:0;
-  border-radius:999px;
-  padding:15px 25px;
-  font-size:16px;
-  cursor:pointer;
-  background:#c65379;
-  color:white;
-  box-shadow:0 10px 30px #c6537930;
-  margin:8px;
-  -webkit-tap-highlight-color:transparent;
-  transition:transform .2s,box-shadow .2s;
-}
+        input[type="text"]:focus {
+            border-color: #e83e8c;
+        }
 
-button:active{
-  transform:scale(.96);
-}
+        .grid-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
 
-button.alt{
-  background:white;
-  color:#a43d62;
-  border:1px solid #e9b8c9;
-}
+        .option-card {
+            border: 1px solid #eed7dd;
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            background-color: #ffffff;
+        }
 
-.hero{
-  background:
-  radial-gradient(circle at 50% 20%,#ffe2ec,transparent 45%),
-  linear-gradient(135deg,#fff8fb,#fdeef4);
-}
+        .option-card:hover {
+            border-color: #e83e8c;
+        }
 
-.heart{
-  font-size:78px;
-  animation:pulse 1.5s infinite;
-  display:block;
-  margin-bottom:10px;
-}
+        .option-card.selected {
+            border-color: #e83e8c;
+            background-color: #fdf2f5;
+            box-shadow: 0 4px 10px rgba(232, 62, 140, 0.15);
+        }
 
-@keyframes pulse{
-  50%{transform:scale(1.12)}
-}
+        .option-icon {
+            font-size: 24px;
+        }
 
-.float{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:1;
-}
+        .btn-next {
+            width: 100%;
+            background: linear-gradient(to right, #ff6b9e, #e83e8c);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+            font-family: 'Quicksand', sans-serif;
+        }
 
-.float span{
-  position:absolute;
-  font-size:22px;
-  opacity:.35;
-  animation:rise 9s linear infinite;
-}
+        .btn-next:hover {
+            box-shadow: 0 5px 15px rgba(232, 62, 140, 0.4);
+            transform: translateY(-2px);
+        }
 
-@keyframes rise{
-  from{
-    transform:translateY(110vh) rotate(0);
-    opacity:0;
-  }
-  20%{opacity:.35}
-  to{
-    transform:translateY(-15vh) rotate(360deg);
-    opacity:0;
-  }
-}
+        /* Hide all steps except the first one initially */
+        .form-step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
 
-.scroll{
-  margin-top:45px;
-  display:block;
-  color:#9c506d;
-  font:12px Arial;
-  letter-spacing:2px;
-}
+        .form-step.active {
+            display: block;
+        }
 
-.photos{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin:30px 0;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.photo-box{
-  width:100%;
-  aspect-ratio:1/1;
-  border-radius:22px;
-  background:linear-gradient(135deg,#ffe0ea,#f6cbd8);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:45px;
-  overflow:hidden;
-}
+        .summary-text {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 40px;
+            line-height: 1.6;
+        }
 
-.photo-box img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-@media(max-width:650px){
-  .photos{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .photo-box:last-child{
-    grid-column:span 2;
-  }
-}
-
-.note{
-  background:#fff;
-  border:1px solid #f0ccd8;
-  border-radius:28px;
-  padding:28px;
-  box-shadow:0 15px 45px #8f3d5520;
-  text-align:left;
-}
-
-.reasons{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:30px;
-}
-
-.reason{
-  background:#fff;
-  border-radius:22px;
-  padding:22px;
-  border:1px solid #f2d4de;
-}
-
-.reason span{
-  font-size:30px;
-}
-
-@media(max-width:650px){
-  .reasons{
-    grid-template-columns:1fr;
-  }
-}
-
-.timeline{
-  display:grid;
-  gap:14px;
-  text-align:left;
-  margin-top:30px;
-}
-
-.memory{
-  background:#fff;
-  padding:20px 22px;
-  border-left:4px solid #cf6a89;
-  border-radius:0 18px 18px 0;
-}
-
-.voice{
-  background:#fff;
-  padding:25px;
-  border-radius:25px;
-  margin-top:25px;
-}
-
-audio{
-  width:100%;
-  margin-top:12px;
-}
-
-.proposal{
-  background:
-  radial-gradient(circle at 50% 40%,#ffd5e2,transparent 50%),
-  linear-gradient(135deg,#fff0f5,#ffe1eb);
-}
-
-.big{
-  font-size:clamp(34px,9vw,72px);
-}
-
-#answer{
-  display:none;
-  margin-top:25px;
-  font-size:22px;
-  color:#a43d62;
-  font-weight:bold;
-}
-
-.footer{
-  min-height:auto;
-  padding:30px;
-  font:12px Arial;
-  color:#a06a7e;
-  text-align:center;
-}
-
-.back{
-  margin-top:25px;
-  background:transparent;
-  color:#a43d62;
-  box-shadow:none;
-  border:1px solid #e9b8c9;
-}
-
-@media(max-width:500px){
-  section{
-    padding:55px 17px;
-  }
-
-  p{
-    font-size:16px;
-  }
-
-  .card{
-    width:100%;
-  }
-}
-</style>
+    </style>
 </head>
-
 <body>
 
-<!-- Floating hearts -->
-<div class="float" aria-hidden="true">
-  <span style="left:8%;animation-delay:0s">♡</span>
-  <span style="left:25%;animation-delay:2s">♥</span>
-  <span style="left:48%;animation-delay:4s">♡</span>
-  <span style="left:70%;animation-delay:1s">♥</span>
-  <span style="left:88%;animation-delay:6s">♡</span>
-</div>
+    <div class="app-container">
+        
+        <!-- Step 1 -->
+        <div id="step1" class="form-step active">
+            <div class="step-indicator">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            
+            <h1>Make The Best Gift She Will Remember Forever</h1>
+            
+            <label>Her name</label>
+            <input type="text" id="herName" value="Farheen" placeholder="Enter her name">
+            
+            <label>Your name</label>
+            <input type="text" id="yourName" value="Vikram" placeholder="Enter your name">
+            
+            <label>The first thing she reads</label>
+            <input type="text" id="firstRead" value="You are my favourite person." placeholder="Type a message">
+            
+            <button class="btn-next" onclick="nextStep(1, 2)">Start building &rarr;</button>
+        </div>
 
+        <!-- Step 2 -->
+        <div id="step2" class="form-step">
+            <div class="step-indicator">
+                <div class="dot active"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+            </div>
+            
+            <h1>What is this for?</h1>
+            <p style="text-align: center; font-size: 13px; color: #888;">Any day works. This just sets the words she opens it with.</p>
+            
+            <div class="grid-options">
+                <div class="option-card" onclick="selectOption(this, 'reason')">
+                    <span class="option-icon">💌</span>
+                    Just because
+                </div>
+                <div class="option-card selected" onclick="selectOption(this, 'reason')">
+                    <span class="option-icon">❤️</span>
+                    I love you
+                </div>
+                <div class="option-card" onclick="selectOption(this, 'reason')">
+                    <span class="option-icon">🎂</span>
+                    Her birthday
+                </div>
+                <div class="option-card" onclick="selectOption(this, 'reason')">
+                    <span class="option-icon">🥂</span>
+                    Our anniversary
+                </div>
+            </div>
 
-<!-- HERO -->
-<section class="hero" id="home">
+            <button class="btn-next" onclick="nextStep(2, 3)">Next &rarr;</button>
+        </div>
 
-  <div class="card">
+        <!-- Step 3 (Final Summary View) -->
+        <div id="step3" class="form-step">
+            <div class="step-indicator">
+                <div class="dot active"></div>
+                <div class="dot active"></div>
+                <div class="dot active"></div>
+            </div>
+            
+            <h1>It's ready.</h1>
+            <p style="text-align: center; font-size: 14px; color: #888;">Try it yourself first. This is exactly what she will see.</p>
+            
+            <div class="summary-text" style="background: #fdf2f5; padding: 20px; border-radius: 15px; border: 1px dashed #dcb5bf;">
+                <h2>For <span id="displayHerName" style="color: #e83e8c;"></span></h2>
+                <p>from <span id="displayYourName"></span> — the love of my life</p>
+                <p style="font-size: 24px; margin-top: 20px;">❤️ 💌 📸 🧩</p>
+            </div>
 
-    <div class="heart">♡</div>
-
-    <div class="kicker">
-      A little surprise for you
-    </div>
-
-    <h1>
-      Our Little Story ❤️
-    </h1>
-
-    <p>
-      I made this little corner of the internet
-      just for you.
-      <br>
-      So take a deep breath...
-      and let's go back to our story.
-    </p>
-
-    <button onclick="goTo('memories')">
-      Open Our Story ✨
-    </button>
-
-    <div class="scroll">
-      ↓ SCROLL DOWN ↓
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- MEMORIES -->
-<section id="memories">
-
-  <div class="card">
-
-    <div class="kicker">
-      Our memories
-    </div>
-
-    <h2>
-      Some moments are worth keeping forever.
-    </h2>
-
-    <p>
-      Maybe these are just simple moments,
-      but with you they became special.
-    </p>
-
-
-    <div class="photos">
-
-      <div class="photo-box">
-        📸
-      </div>
-
-      <div class="photo-box">
-        ❤️
-      </div>
-
-      <div class="photo-box">
-        🥰
-      </div>
-
-    </div>
-
-
-    <div class="note">
-
-      <p>
-        <strong>To you ❤️</strong>
-        <br><br>
-
-        There are moments in life that look ordinary
-        when they happen...
-        but later we realize they were actually
-        some of the most beautiful moments.
-        <br><br>
-
-        For me, many of those moments have you in them.
-      </p>
+            <button class="btn-next" onclick="alert('Website Created! Yeh sirf frontend demo tha.')">👀 See What You Made</button>
+            <button class="btn-next" style="background: #f0e6e8; color: #4a2a2e; margin-top: 10px;" onclick="nextStep(3, 1)">&larr; Change something</button>
+        </div>
 
     </div>
 
-    <button onclick="goTo('reasons')">
-      Continue 💗
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- REASONS -->
-<section id="reasons">
-
-  <div class="card">
-
-    <div class="kicker">
-      A few reasons
-    </div>
-
-    <h2>
-      Why you are special ❤️
-    </h2>
-
-    <div class="reasons">
-
-      <div class="reason">
-        <span>😊</span>
-        <h3>Your Smile</h3>
-        <p>
-          Somehow it can make an ordinary day
-          feel a little better.
-        </p>
-      </div>
-
-      <div class="reason">
-        <span>💬</span>
-        <h3>Our Talks</h3>
-        <p>
-          Even random conversations become
-          memories with you.
-        </p>
-      </div>
-
-      <div class="reason">
-        <span>❤️</span>
-        <h3>You</h3>
-        <p>
-          The biggest reason is simply...
-          you are you.
-        </p>
-      </div>
-
-    </div>
-
-    <button onclick="goTo('timeline')">
-      Our Little Timeline 🕰️
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- TIMELINE -->
-<section id="timeline">
-
-  <div class="card">
-
-    <div class="kicker">
-      Our journey
-    </div>
-
-    <h2>
-      Little moments, big memories.
-    </h2>
-
-    <div class="timeline">
-
-      <div class="memory">
-        <strong>01 — The Beginning</strong>
-        <p>
-          Somewhere between a hello and a conversation,
-          our story quietly started.
-        </p>
-      </div>
-
-      <div class="memory">
-        <strong>02 — Getting Closer</strong>
-        <p>
-          Slowly, talking to you became one of
-          my favourite parts of the day.
-        </p>
-      </div>
-
-      <div class="memory">
-        <strong>03 — The Memories</strong>
-        <p>
-          Laughs, silly moments, little arguments
-          and everything between them.
-        </p>
-      </div>
-
-      <div class="memory">
-        <strong>04 — Today</strong>
-        <p>
-          And here we are...
-          still creating our story.
-        </p>
-      </div>
-
-    </div>
-
-    <button onclick="goTo('letter')">
-      One More Thing 💌
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- LETTER -->
-<section id="letter">
-
-  <div class="card">
-
-    <div class="kicker">
-      A letter for you
-    </div>
-
-    <h2>
-      To my favourite person...
-    </h2>
-
-    <div class="note">
-
-      <p>
-
-        I don't always know how to explain
-        everything I feel.
-        <br><br>
-
-        Sometimes words aren't enough,
-        so I wanted to make something
-        that could say a little of it for me.
-        <br><br>
-
-        Thank you for being a beautiful part
-        of my life.
-        <br><br>
-
-        Thank you for the smiles,
-        the conversations,
-        the memories,
-        and even the little fights.
-        <br><br>
-
-        Whatever happens tomorrow,
-        I hope we continue making
-        beautiful memories together.
-        <br><br>
-
-        You are genuinely special to me. ❤️
-
-      </p>
-
-    </div>
-
-    <button onclick="goTo('proposal')">
-      There's one last thing... 💗
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- PROPOSAL -->
-<section class="proposal" id="proposal">
-
-  <div class="card">
-
-    <div class="heart">
-      💖
-    </div>
-
-    <div class="kicker">
-      Just one question
-    </div>
-
-    <h2 class="big">
-      Will you keep making
-      memories with me?
-    </h2>
-
-    <p>
-      No complicated words.
-      <br>
-      Just one little question from my heart.
-    </p>
-
-    <button onclick="sayYes()">
-      YES, ALWAYS ❤️
-    </button>
-
-    <button class="alt" onclick="makeItSweet()">
-      Tell me again 😌
-    </button>
-
-    <div id="answer">
-      YAY! ❤️
-      <br>
-      Then let's keep writing
-      our story together.
-    </div>
-
-    <br>
-
-    <button class="back" onclick="goTo('home')">
-      ↑ Start Again
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- FOOTER -->
-<section class="footer">
-
-  Made with ❤️ just for you.
-
-  <br><br>
-
-  — Vikram
-
-</section>
-
-
-<script>
-
-/* Smooth navigation */
-function goTo(id){
-
-  const target = document.getElementById(id);
-
-  if(target){
-
-    target.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-
-  }
-
-}
-
-
-/* YES button */
-function sayYes(){
-
-  const answer = document.getElementById("answer");
-
-  answer.style.display = "block";
-
-  answer.innerHTML =
-    "YAY! ❤️<br><br>" +
-    "Then let's keep writing our story together. 🥹💗";
-
-  createHearts();
-
-}
-
-
-/* Sweet response */
-function makeItSweet(){
-
-  const answer = document.getElementById("answer");
-
-  answer.style.display = "block";
-
-  answer.innerHTML =
-    "Okay okay... 😌❤️<br><br>" +
-    "You are one of the most special people in my world.";
-
-}
-
-
-/* Heart celebration */
-function createHearts(){
-
-  for(let i=0;i<25;i++){
-
-    const heart = document.createElement("div");
-
-    heart.innerHTML =
-      ["❤️","💖","💕","💗","💓"]
-      [Math.floor(Math.random()*5)];
-
-    heart.style.position="fixed";
-    heart.style.left=(Math.random()*100)+"vw";
-    heart.style.top="100vh";
-    heart.style.fontSize=(18+Math.random()*25)+"px";
-    heart.style.zIndex="9999";
-    heart.style.pointerEvents="none";
-
-    document.body.appendChild(heart);
-
-    const duration =
-      2000 + Math.random()*2500;
-
-    heart.animate(
-      [
-        {
-          transform:"translateY(0) rotate(0deg)",
-          opacity:1
-        },
-        {
-          transform:
-            "translateY(-110vh) rotate(360deg)",
-          opacity:0
+    <script>
+        // Options Select karne ka logic
+        function selectOption(element, group) {
+            // Remove 'selected' class from all siblings in the same group
+            let siblings = element.parentElement.children;
+            for(let i = 0; i < siblings.length; i++) {
+                siblings[i].classList.remove('selected');
+            }
+            // Add 'selected' class to clicked option
+            element.classList.add('selected');
         }
-      ],
-      {
-        duration:duration,
-        easing:"ease-out"
-      }
-    );
 
-    setTimeout(()=>{
-      heart.remove();
-    },duration);
+        // Next page pe jaane ka logic
+        function nextStep(current, next) {
+            // Hide current step
+            document.getElementById('step' + current).classList.remove('active');
+            // Show next step
+            document.getElementById('step' + next).classList.add('active');
 
-  }
-
-}
-
-
-/* Prevent accidental form-like behaviour */
-document.querySelectorAll("button").forEach(button=>{
-
-  button.addEventListener("touchstart",function(){
-    this.style.transform="scale(.97)";
-  },{passive:true});
-
-  button.addEventListener("touchend",function(){
-    this.style.transform="";
-  },{passive:true});
-
-});
-
-</script>
-
+            // Agar hum final step pe jaa rahe hain, toh naam update karo
+            if(next === 3) {
+                let herName = document.getElementById('herName').value;
+                let yourName = document.getElementById('yourName').value;
+                
+                document.getElementById('displayHerName').innerText = herName || 'Her';
+                document.getElementById('displayYourName').innerText = yourName || 'You';
+            }
+        }
+    </script>
 </body>
 </html>
